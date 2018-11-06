@@ -1,0 +1,44 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <%= stylesheet_link_tag "normalize" %>
+  <%= stylesheet_link_tag "style" %>
+  <title>株式会社DIVE</title>
+</head>
+<body>
+  <div class="container">
+    <header class="header clearfix">
+      <nav>
+        <ul class="top_menu clearfix" >
+          <li><%= link_to 'HOME', home_path %></li>
+          <li><%= link_to 'つぶやき一覧', twits_path %></li>
+          <li><%= link_to '新規投稿', twits_new_path %></li>
+        </ul>
+      </nav>
+    </header>
+    <div class="wrapper clearfix">
+      <aside >
+        <center>
+          <nav class="side_menu">
+            <p><%= notice %></p>
+            <h2>つぶやき一覧</h2>
+            <table>
+              <% @twit.each do |twit| %>
+              <tr>
+                <td><%= twit.content %></td>
+              </tr>
+              <tr>
+                <td class="twitedit"><%= link_to "編集", edit_twit_path(twit.id), data: { confirm: '本当に編集していいですか？' } %></td>
+                <td class="twitdel"><%= link_to "削除", twit_path(twit.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %></td>
+              </tr>
+              <% end %>
+            </table>
+          </nav>
+        </center>
+      </aside>
+      <footer class="footer">
+        <p>Dive into Code test application</p>
+      </footer>
+    </div>
+  </body>
+</html>

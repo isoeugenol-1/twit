@@ -1,0 +1,41 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <%= stylesheet_link_tag "normalize" %>
+  <%= stylesheet_link_tag "style" %>
+  <title>株式会社DIVE</title>
+</head>
+<body>
+  <div class="container">
+    <header class="header clearfix">
+      <nav>
+        <ul class="top_menu clearfix" >
+          <li><%= link_to 'HOME', home_path %></li>
+          <li><%= link_to 'つぶやき一覧', twits_path %></li>
+          <li><%= link_to '新規投稿', twits_new_path %></li>
+        </ul>
+      </nav>
+    </header>
+  <div class="wrapper clearfix">
+    <aside>
+      <center>
+        <nav class="side_menu">
+          <h2>以下の内容で投稿しますか？</h2>
+          <%= form_with(model: @twit, url: twits_path, local: true) do |form| %>
+          <%= form.hidden_field :content %>
+          <p>本文:<%= @twit.content %></p>
+          <%= form.submit  "投稿する" %>
+          <% end %>
+          <%= form_with(model: @twit, url: new_twit_path, local: true, method: 'get') do |form| %>
+          <%= form.hidden_field :content %>
+          <%= form.submit "もどる", name: 'back' %>
+          <% end %>
+        </nav>
+      </center>
+    </aside>
+    <footer class="footer">
+      <p>Dive into Code test application</p>
+    </footer>
+  </div>
+</body>
+</html>
