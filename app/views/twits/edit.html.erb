@@ -1,0 +1,45 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <%= stylesheet_link_tag "normalize" %>
+  <%= stylesheet_link_tag "style" %>
+  <title>株式会社DIVE</title>
+</head>
+<body>
+  <div class="container">
+    <header class="header clearfix">
+      <nav>
+        <ul class="top_menu clearfix" >
+          <li><%= link_to 'HOME', home_path %></li>
+          <li><%= link_to 'つぶやき一覧', twits_path %></li>
+          <li><%= link_to '新規投稿', twits_new_path %></li>
+        </ul>
+      </nav>
+    </header>
+    <div class="wrapper clearfix">
+      <aside >
+        <center>
+          <nav class="side_menu">
+            <h2>編集画面</h2>
+            <%= form_with(model: @twit, local: true) do |form| %>
+            <% if @twit.errors.any? %>
+            <div id="error_explanation">
+             <h2>※空白もしくは１４０文字以上です!!<br>
+             再度入力をしてください↓↓↓</h2>
+            </div>
+            <% end %>
+            <div class="twit_title">
+              <%= form.label "本文：" %>
+              <%= form.text_field :content %>
+            </div>
+            <%= form.submit text="投稿します"%>
+            <% end %>
+          </nav>
+        </center>
+      </aside>
+      <footer class="footer">
+        <p>Dive into Code test application</p>
+      </footer>
+    </div>
+  </body>
+</html>
